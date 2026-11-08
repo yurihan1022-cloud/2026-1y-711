@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ⅶ-1-1 태양계 구성 천체</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F9FF;
+  --ink:#27324A;
+  --muted:#66728C;
+  --line:#DCE4F2;
+  --gas:#4B5BD6;        /* 기체: 주황 */
+  --gas-soft:#E7EAFF;
+  --sky:#5AB4E8;        /* 기체 입자: 하늘 */
+  --sky-soft:#E2F2FC;
+  --mint:#3FBFA6;
+  --mint-soft:#DDF5EF;
+  --sun:#FFD84D;
+  --sun-soft:#FFF6D2;
+  --answer:#16A34A;
+  --card:#FFFFFF;
+  --r:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',system-ui,sans-serif;font-size:19px;line-height:1.75;word-break:keep-all}
+img{max-width:100%;display:block}
+h1,h2,h3,.jua{font-family:'Jua','Noto Sans KR',sans-serif;font-weight:400;letter-spacing:-.01em}
+
+/* ===== 상단 내비 ===== */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav .in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:10px 18px;overflow-x:auto}
+nav .brand{font-family:'Jua';font-size:20px;color:var(--gas);white-space:nowrap;margin-right:10px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-size:16px;padding:6px 14px;border-radius:999px;font-weight:500}
+nav a:hover,nav a.on{background:var(--gas-soft);color:#2E3A9E}
+
+/* ===== 히어로 ===== */
+.hero{position:relative;overflow:hidden;background:radial-gradient(1.5px 1.5px at 12% 20%,#fff 60%,transparent),radial-gradient(1.5px 1.5px at 30% 70%,#fff 60%,transparent),radial-gradient(2px 2px at 55% 30%,#FFE58A 60%,transparent),radial-gradient(1.5px 1.5px at 75% 80%,#fff 60%,transparent),radial-gradient(1.5px 1.5px at 88% 15%,#fff 60%,transparent),radial-gradient(1px 1px at 45% 85%,#fff 60%,transparent),linear-gradient(160deg,#141A40 0%,#232B6B 55%,#34409A 100%);padding:64px 20px 70px}
+.hero .in{max-width:1180px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.hero .unit{display:inline-block;background:#fff;color:#2E3A9E;font-family:'Jua';font-size:20px;padding:4px 16px;border-radius:999px}
+.hero h1{font-size:clamp(40px,6vw,68px);line-height:1.15;margin:14px 0 10px;color:#fff}
+.hero p{margin:0;font-size:20px;color:#DDE2FF}
+.hero .pages{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.hero .pages span{background:rgba(255,255,255,.75);border-radius:12px;padding:6px 14px;font-size:17px}
+#heroBox{width:100%;aspect-ratio:1/1;max-width:340px;justify-self:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff 0%,#FFF7EF 60%,#FFE6D2 100%);box-shadow:inset 0 0 0 6px #fff, 0 12px 30px rgba(200,90,18,.18)}
+
+/* ===== 레이아웃 ===== */
+main{max-width:1180px;margin:0 auto;padding:10px 20px 80px}
+section{padding:46px 0 10px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.sec-head .num{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-family:'Jua';font-size:28px;color:#fff;background:var(--gas);flex:none}
+.sec-head h2{font-size:34px;margin:0;line-height:1.2}
+.sec-head small{display:block;font-family:'Noto Sans KR';font-size:15px;color:var(--muted);font-weight:500}
+
+.card{background:var(--card);border-radius:var(--r);padding:26px 28px;margin:18px 0;border:2px solid var(--line)}
+.card h3{font-size:25px;margin:0 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{font-family:'Jua';font-size:16px;padding:3px 12px;border-radius:999px;background:var(--sky-soft);color:#1F6FA0}
+.tag.gas{background:var(--gas-soft);color:#2E3A9E}
+.tag.mint{background:var(--mint-soft);color:#1E8571}
+.tag.sun{background:var(--sun-soft);color:#9A7400}
+.card.concept{border-color:#C3C9F5;background:linear-gradient(#fff,#fff) padding-box}
+.card.concept h3::before{content:"";width:10px;height:26px;border-radius:4px;background:var(--gas)}
+.card.think{background:#FBFDFF;border-color:#BFE0F5}
+.card.lab{border-color:#A9E3D6}
+.card.check{background:#FFFCEF;border-color:#F3DF8C}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.grid2.wide-left{grid-template-columns:1.3fr .7fr}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fig{background:#fff;border-radius:14px;padding:8px}
+.fig figcaption{font-size:15px;color:var(--muted);text-align:center;margin-top:4px}
+.photo{border-radius:14px;overflow:hidden}
+.bubble{background:var(--sky-soft);border-radius:18px;padding:14px 20px;font-weight:700;font-size:21px;position:relative}
+.big-q{font-family:'Jua';font-size:28px;line-height:1.45;color:#1F4E79;margin:4px 0 14px}
+.def{font-size:22px;font-weight:700;background:var(--gas-soft);border-radius:14px;padding:14px 20px;margin:12px 0}
+ol.steps{padding-left:0;list-style:none;counter-reset:s;margin:0}
+ol.steps li{counter-increment:s;position:relative;padding:6px 0 6px 46px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:7px;width:32px;height:32px;border-radius:50%;background:var(--mint);color:#fff;font-family:'Jua';font-size:19px;display:grid;place-items:center;line-height:1}
+.qlist{margin:0;padding:0;list-style:none}
+.qlist>li{padding:14px 0;border-top:1px dashed var(--line)}
+.qlist>li:first-child{border-top:none}
+.qn{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;font-family:'Jua';font-size:17px;margin-right:8px;line-height:1}
+.note{font-size:16px;color:var(--muted)}
+.side{background:#F3F6FC;border-radius:14px;padding:12px 16px;font-size:16px;line-height:1.6}
+.side b{color:#2E3A9E}
+
+/* ===== 빈칸 / 정답 ===== */
+.bl{display:inline-block;min-width:4.2em;padding:0 .35em;margin:0 .15em;border-radius:8px;text-align:center;cursor:pointer;
+    color:transparent;background:var(--sun-soft);border-bottom:3px solid #E9C43A;line-height:1.45;transition:color .25s,background .25s}
+.bl.on{color:var(--answer);font-weight:900;background:#E9F8EE;border-bottom-color:var(--answer)}
+.ans{position:relative;margin-top:10px;border-radius:12px;padding:12px 16px;cursor:pointer;min-height:54px;background:#F4F6FA;border:2px dashed #C9D3E4}
+.ans>*{visibility:hidden}
+.ans::before{content:"?";position:absolute;inset:0;display:grid;place-items:center;font-family:'Jua';font-size:26px;color:#9AA7BF}
+.ans.on{background:#EDFAF1;border:2px solid #BFE8CC;color:var(--answer);font-weight:700}
+.ans.on>*{visibility:visible}
+.ans.on::before{content:none}
+.ans p{margin:0}
+.rv-bar{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.btn{font-family:'Jua';font-size:20px;border:none;border-radius:14px;padding:10px 22px;cursor:pointer;background:var(--answer);color:#fff;box-shadow:0 3px 0 #0E7A35;transition:transform .08s}
+.btn:active{transform:translateY(2px);box-shadow:0 1px 0 #0E7A35}
+.btn .cnt{font-family:'Noto Sans KR';font-size:15px;opacity:.85;margin-left:6px}
+.btn.ghost{background:#fff;color:var(--muted);box-shadow:0 0 0 2px var(--line) inset}
+.btn.gas{background:var(--gas);box-shadow:0 3px 0 #2E3A9E}
+.btn.sky{background:var(--sky);box-shadow:0 3px 0 #2E86BA}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #2563EB;outline-offset:3px}
+
+/* ===== 표 ===== */
+table.tb{width:100%;border-collapse:separate;border-spacing:0;font-size:18px;overflow:hidden;border-radius:14px;border:2px solid var(--line)}
+.tb th,.tb td{padding:10px 12px;text-align:center;border-top:1px solid var(--line)}
+.tb thead th{background:#EEF3FB;border-top:none;font-family:'Jua';font-weight:400;font-size:20px}
+.tb th.down{background:var(--sky-soft);color:#1F6FA0}
+.tb th.up{background:var(--gas-soft);color:#2E3A9E}
+.scroll-x{overflow-x:auto}
+
+/* ===== 시뮬레이션 ===== */
+.sim{background:#fff;border-radius:var(--r);border:2px solid #BFE0F5;padding:20px}
+.sim canvas{width:100%;height:300px;display:block;border-radius:14px;background:#FAFCFF}
+.sim-ctrl{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-top:14px}
+.sim-ctrl input[type=range]{width:100%;accent-color:var(--gas);height:28px}
+.meters{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.meter{border-radius:14px;padding:10px 14px;background:#F4F7FC;text-align:center}
+.meter .k{font-size:15px;color:var(--muted)}
+.meter .v{font-family:'Jua';font-size:34px;line-height:1.2}
+.meter.p .v{color:#2E3A9E}
+.meter.c .v{color:#1F6FA0}
+.bar{height:12px;border-radius:999px;background:#E8EDF6;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--gas);border-radius:999px;transition:width .3s}
+
+/* ===== O/X ===== */
+.ox{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px dashed var(--line)}
+.ox:first-of-type{border-top:none}
+.ox .s{flex:1}
+.ox .bl{min-width:2.4em;font-family:'Jua';font-size:26px}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+footer{text-align:center;color:var(--muted);font-size:15px;padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px))}
+
+@media (max-width:860px){
+  body{font-size:17px}
+  .hero .in,.grid2,.grid2.wide-left{grid-template-columns:1fr}
+  #heroBox{max-width:240px}
+  .grid3{grid-template-columns:1fr 1fr}
+  .meters{grid-template-columns:1fr}
+  .sim-ctrl{grid-template-columns:1fr}
+  .sim canvas{height:240px}
+  .sec-head h2{font-size:28px}
+  .card{padding:20px 18px}
+}
+.hero .unit{color:#2E3A9E}
+.heroimg{width:100%;max-width:440px;justify-self:center;border-radius:28px;box-shadow:0 0 0 6px rgba(255,255,255,.25),0 12px 30px rgba(0,0,0,.3)}
+.linkbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn.link{background:#27324A;box-shadow:0 3px 0 #111827;text-decoration:none;display:inline-block}
+.btn.sun{background:#F2B705;color:#2B2200;box-shadow:0 3px 0 #B98A00}
+.video{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#1E2638}
+.video.short{aspect-ratio:9/16;max-width:340px;margin:0 auto}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* 모둠 역할 */
+.mode{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+.mode .btn{font-size:19px}
+.mode .btn.off{background:#fff;color:var(--muted);box-shadow:0 0 0 2px var(--line) inset}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.roles.three{grid-template-columns:repeat(3,1fr)}
+.role{border-radius:16px;padding:14px 16px;background:#fff;border:2px solid var(--line)}
+.role .who{font-family:'Jua';font-size:24px;color:#2E3A9E}
+.role .what{font-family:'Jua';font-size:22px;margin:4px 0}
+.role .cnt{display:inline-block;font-size:14px;background:var(--sun-soft);color:#9A7400;border-radius:999px;padding:1px 10px;margin-left:4px;font-family:'Noto Sans KR'}
+.role ul{margin:6px 0 0;padding-left:18px;font-size:16px;line-height:1.55;color:var(--muted)}
+.timer{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#141A40;color:#fff;border-radius:16px;padding:14px 18px;margin-top:16px}
+.timer .t{font-family:'Jua';font-size:56px;line-height:1;min-width:150px;text-align:center;letter-spacing:.02em}
+.timer .t.end{color:#FFD84D}
+.timer .btn{font-size:18px;padding:8px 16px}
+.timer .btn.ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:none}
+/* 체크 칩 */
+.chk{display:grid;grid-template-columns:220px 1fr;gap:10px 14px;align-items:center}
+.chk .f{font-weight:700;background:#F3F6FC;border-radius:12px;padding:8px 12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.mk{display:inline-block;padding:6px 14px;border-radius:999px;border:2px solid var(--line);background:#fff;cursor:pointer;font-weight:500;transition:all .2s}
+.mk.on{background:#E9F8EE;border-color:var(--answer);color:var(--answer);font-weight:900}
+.mk.on::before{content:"✔ "}
+.chips .no{display:inline-block;padding:6px 14px;border-radius:999px;border:2px solid var(--line);background:#fff;font-weight:500}
+/* 천체 카드 */
+.strip{display:flex;align-items:center;gap:10px;overflow-x:auto;padding:16px;border-radius:16px;background:#141A40}
+.strip button{flex:none;background:none;border:none;cursor:pointer;color:#DDE2FF;font-family:'Jua';font-size:16px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px;border-radius:12px}
+.strip button:hover{background:rgba(255,255,255,.08)}
+.strip img{height:64px;width:auto;object-fit:contain}
+.bodies{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.body{background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px 14px;transition:box-shadow .3s,border-color .3s}
+.body.hl{border-color:var(--gas);box-shadow:0 0 0 4px var(--gas-soft)}
+.body .pic{height:110px;display:flex;align-items:center;justify-content:center;background:#F4F6FC;border-radius:12px;margin-bottom:8px;overflow:hidden}
+.body .pic img{max-height:100px;max-width:90%;object-fit:contain}
+.body .pic img.round{border-radius:50%;aspect-ratio:1/1;object-fit:cover}
+.body h4{font-family:'Jua';font-weight:400;font-size:24px;margin:0 0 2px}
+.body p{margin:0;font-size:17px;line-height:1.6}
+.body .kind{font-size:13px;color:var(--muted);font-weight:500}
+.cond{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cond .side{text-align:center;font-size:18px}
+.cond .side .n{font-family:'Jua';font-size:30px;color:#2E3A9E;display:block}
+.cond .x{font-family:'Jua';font-size:20px;margin-top:6px;display:block}
+@media (max-width:860px){.roles,.roles.three{grid-template-columns:1fr 1fr}.chk{grid-template-columns:1fr}.cond{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav><div class="in">
+  <span class="brand">Ⅶ-1 태양계 구성 천체</span>
+  <a href="#intro">들어가기</a>
+  <a href="#research">모둠 탐구</a>
+  <a href="#bodies">태양계 천체</a>
+  <a href="#pluto">명왕성</a>
+  <a href="#observe">관측하기</a>
+  <a href="#wrap">확인·정리</a>
+</div></nav>
+
+<header class="hero">
+  <div class="in">
+    <div>
+      <span class="unit">Ⅶ. 태양계 · 1. 태양계 구성 천체와 태양의 활동</span>
+      <h1>태양계<br>구성 천체</h1>
+      <p>태양, 행성, 왜소 행성, 소행성, 혜성, 위성은 각각 어떤 특징이 있을까?</p>
+      <div class="pages"><span>교과서 228~233쪽</span><span>① 태양계 구성 천체</span><span>달과 행성 관측하기</span></div>
+    </div>
+    <img class="heroimg" src="images/saturn.webp" alt="토성" style="background:transparent;box-shadow:none">
+  </div>
+</header>
+
+<main>
+
+<!-- ================= 들어가기 ================= -->
+<section id="intro">
+  <div class="sec-head"><div class="num">1</div><h2>들어가기<small>교과서 228쪽</small></h2></div>
+
+  <div class="card reveal">
+    <h3><span class="tag mint">이 단원을 배우면</span></h3>
+    <div class="side" style="font-size:19px">· 태양계를 구성하는 천체에는 어떤 것이 있는지 설명할 수 있다.<br>· 태양계를 구성하는 천체의 특징을 설명할 수 있다.</div>
+  </div>
+
+  <div class="card think reveal" data-reveal>
+    <h3><span class="tag">생각 깨우기</span>태양계에는 어떤 천체가 있을까?</h3>
+    <p>지구가 속한 태양계에는 우리가 알고 있는 천체 말고도 여러 종류의 천체가 있다. 알고 있는 천체를 모두 말해 보자.</p>
+    <div class="ans"><p>태양계에는 스스로 빛을 내는 태양과 지구, 화성과 같은 행성, 달, 혜성 등의 천체들이 있다.</p></div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card concept reveal" data-reveal>
+    <h3>태양계</h3>
+    <div class="def">태양과 태양 주위를 <span class="bl">공전</span>하는 천체 및 이들이 차지하는 공간을 <span class="bl">태양계</span>라고 한다.</div>
+    <p>태양계는 <span class="bl">태양</span>, <span class="bl">행성</span>, <span class="bl" style="min-width:5em">왜소 행성</span>, <span class="bl">소행성</span>, <span class="bl">혜성</span>, <span class="bl">위성</span> 등으로 이루어져 있다.</p>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+</section>
+
+<!-- ================= 모둠 탐구 ================= -->
+<section id="research">
+  <div class="sec-head"><div class="num">2</div><h2>태양계 구성 천체 자료 수집 및 분석하기<small>교과서 228~229쪽 · 탐구 (모둠 조사)</small></h2></div>
+
+  <div class="card lab reveal">
+    <h3><span class="tag mint">탐구</span><span class="tag">디지털</span>목표와 준비</h3>
+    <div class="grid2 wide-left">
+      <div>
+        <p><b>목표</b> | 태양계 구성 천체의 자료를 수집하여 분석할 수 있다.</p>
+        <p><b>준비물</b> | 스마트 기기, 참고 도서</p>
+        <div class="side"><b>디지털 탐색</b> 한국천문연구원 천문우주지식정보 누리집 → 천문학습관 → 태양계에서 태양계 구성 천체에 대한 자료를 찾아볼 수 있다.</div>
+        <div class="linkbtns"><a class="btn link" href="https://astro.kasi.re.kr" target="_blank" rel="noopener">한국천문연구원 천문우주지식정보 열기</a></div>
+      </div>
+      <img src="images/group_research.webp" alt="모둠별로 자료를 조사하는 학생들">
+    </div>
+  </div>
+
+  <div class="card lab reveal">
+    <h3><span class="tag mint">과정 1</span>모둠 역할 나누기</h3>
+    <p>조사할 천체는 <b>태양, 행성, 왜소 행성, 소행성, 혜성, 위성</b> 6가지이다. 모둠 인원에 맞게 한 사람이 맡을 천체를 정해 보자.</p>
+    <div class="mode">
+      <button class="btn" id="m4">4명 모둠</button>
+      <button class="btn off" id="m3">3명 모둠</button>
+    </div>
+    <div class="roles" id="roles"></div>
+    <p class="note" id="roleNote" style="margin:10px 0 0"></p>
+    <div class="side" style="margin-top:12px"><b>조사할 내용</b> 맡은 천체마다 ① 특징 2~3가지 ② 천체의 예 ③ 사진이나 그림 1장 을 찾아 모둠원과 공유한다.</div>
+
+    <div class="timer" aria-live="polite">
+      <span class="t" id="tm">10:00</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" id="tStart">시작</button>
+        <button class="btn ghost" id="tReset">처음으로</button>
+        <button class="btn ghost" data-min="5">5분</button>
+        <button class="btn ghost" data-min="10">10분</button>
+        <button class="btn ghost" data-min="15">15분</button>
+        <button class="btn ghost" data-min="20">20분</button>
+      </div>
+      <span style="font-size:16px;opacity:.8">조사 시간 타이머</span>
+    </div>
+  </div>
+
+  <div class="card lab reveal">
+    <h3><span class="tag mint">과정 2</span>수집한 자료를 정리하여 모둠원들과 공유해 보자. <span class="tag sun">교과서 예시</span></h3>
+    <div class="grid3">
+      <div class="side"><b>태양</b><br>특징<br>- 스스로 빛을 낸다.<br>- 태양계의 중심에 위치한다.<br>- 주로 수소와 헬륨으로 이루어져 있다.</div>
+      <div class="side"><b>왜소 행성</b><br>특징<br>- 모양이 둥글다.<br>- 행성에 비해 질량과 크기가 작다.<br>예: 명왕성, 세레스</div>
+      <div class="side"><b>위성</b><br>특징<br>- 행성 주위를 공전한다.<br>예: 달, 이오</div>
+    </div>
+  </div>
+
+  <div class="card lab reveal" data-reveal>
+    <h3><span class="tag mint">과정 3</span>천체의 특징을 쓰고, 그 특징에 해당하는 천체에 ✔ 표 해 보자.</h3>
+    <div class="chk">
+      <span class="f">스스로 빛을 낸다.</span>
+      <div class="chips"><span class="mk">태양</span><span class="no">행성</span><span class="no">왜소 행성</span><span class="no">소행성</span><span class="no">혜성</span><span class="no">위성</span></div>
+      <span class="f">태양 주위를 공전한다.</span>
+      <div class="chips"><span class="no">태양</span><span class="mk">행성</span><span class="mk">왜소 행성</span><span class="mk">소행성</span><span class="mk">혜성</span><span class="no">위성</span></div>
+      <span class="f">모양이 둥글다. <span class="note">(예시)</span></span>
+      <div class="chips"><span class="mk">태양</span><span class="mk">행성</span><span class="mk">왜소 행성</span><span class="no">소행성</span><span class="no">혜성</span><span class="no">위성</span></div>
+      <span class="f">행성 주위를 공전한다. <span class="note">(예시)</span></span>
+      <div class="chips"><span class="no">태양</span><span class="no">행성</span><span class="no">왜소 행성</span><span class="no">소행성</span><span class="no">혜성</span><span class="mk">위성</span></div>
+    </div>
+    <p class="note" style="margin:10px 0 0">세 번째, 네 번째 줄은 모둠에서 찾은 특징을 쓰는 칸의 예시이다. 학생들이 찾은 다른 특징도 함께 확인해 보자.</p>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card lab reveal">
+    <h3><span class="tag mint">과정 4 · 정리 1</span>발표하고 보완하기</h3>
+    <ol class="steps">
+      <li>모둠별로 분석한 내용을 발표해 보자.</li>
+      <li>다른 모둠이 발표한 내용을 듣고, 우리 모둠이 분석한 내용을 보완해 보자.</li>
+    </ol>
+  </div>
+
+  <div class="card concept reveal" data-reveal>
+    <h3>정리 2 · 태양계 구성 천체의 특징 정리하기</h3>
+    <div class="scroll-x"><table class="tb">
+      <thead><tr><th>천체</th><th>특징</th></tr></thead>
+      <tbody>
+        <tr><th>태양</th><td class="l" style="text-align:left"><span class="bl">스스로</span> 빛을 낸다. 태양계의 <span class="bl">중심</span>에 위치한다. 주로 수소와 <span class="bl">헬륨</span>으로 이루어져 있다.</td></tr>
+        <tr><th>행성</th><td style="text-align:left">태양 주위를 공전한다. 왜소 행성, 소행성 등에 비해 크기와 질량이 <span class="bl">크고</span> 모양이 <span class="bl">둥글다</span>.</td></tr>
+        <tr><th>왜소 행성</th><td style="text-align:left">태양 주위를 공전한다. 행성에 비해 크기와 질량이 <span class="bl">작고</span> 모양이 둥글다.</td></tr>
+        <tr><th>소행성</th><td style="text-align:left">태양 주위를 공전한다. 행성, 왜소 행성에 비해 크기와 질량이 작고 모양이 <span class="bl">불규칙</span>하다.</td></tr>
+        <tr><th>혜성</th><td style="text-align:left">태양 주위를 긴 <span class="bl">타원</span> 궤도로 공전한다. 태양에 가까워지면 태양 <span class="bl">반대쪽</span>으로 긴 꼬리가 생긴다.</td></tr>
+        <tr><th>위성</th><td style="text-align:left"><span class="bl">행성</span> 주위를 공전한다. 스스로 빛을 내지 못한다. 수성과 <span class="bl">금성</span>을 제외한 행성에 위성이 있다.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+</section>
+
+<!-- ================= 태양계 천체 ================= -->
+<section id="bodies">
+  <div class="sec-head"><div class="num">3</div><h2>태양계 천체의 특징<small>교과서 230~231쪽 · 그림 Ⅶ-1</small></h2></div>
+
+  <div class="card reveal" style="border-color:#C3C9F5">
+    <h3><span class="tag gas">가상 현실</span>태양계 천체 살펴보기</h3>
+    <p style="margin-top:-4px">태양계를 구성하는 행성에는 수성, 금성, 지구, 화성, 목성, 토성, 천왕성, 해왕성이 있다. 태양 주위를 공전하는 행성은 크기와 표면의 특징이 다양하며 위성이나 고리를 가지고 있는 것도 있다.</p>
+    <div class="strip" id="strip"></div>
+    <p class="note" style="margin:8px 0 0">천체를 누르면 아래 설명 카드로 이동한다. (그림에서 천체의 크기와 거리는 실제 비율과 다르다.)</p>
+    <div class="linkbtns"><a class="btn sun" href="https://qr.mirae-n.com/v/7vp98n13vp" target="_blank" rel="noopener">태양계 관찰 웹사이트로 이동</a></div>
+  </div>
+
+  <div class="card concept reveal" data-reveal>
+    <h3>태양과 행성</h3>
+    <div class="bodies">
+      <div class="body" id="b-sun"><div class="pic"><img src="images/sun.webp" alt="태양" style="max-width:100%;border-radius:8px"></div><span class="kind">항성</span><h4>태양</h4><p>태양계에서 유일하게 <span class="bl">스스로</span> 빛을 내는 천체이다. 주로 수소와 헬륨으로 이루어져 있다.</p></div>
+      <div class="body" id="b-mercury"><div class="pic"><img src="images/mercury.webp" alt="수성"></div><span class="kind">행성 ①</span><h4>수성</h4><p><span class="bl">대기</span>가 거의 없어 낮과 밤의 온도 차가 매우 크고, 표면에 <span class="bl" style="min-width:5.5em">운석 구덩이</span>가 많다.</p></div>
+      <div class="body" id="b-venus"><div class="pic"><img src="images/venus.webp" alt="금성"></div><span class="kind">행성 ②</span><h4>금성</h4><p><span class="bl" style="min-width:5.5em">이산화 탄소</span>로 이루어진 두꺼운 대기가 있어 표면 온도가 매우 <span class="bl">높다</span>.</p></div>
+      <div class="body" id="b-earth"><div class="pic"><img src="images/earth.webp" alt="지구"></div><span class="kind">행성 ③</span><h4>지구</h4><p>태양계 행성 중 유일하게 표면에 <span class="bl">액체</span> 상태의 물과 <span class="bl">생명체</span>가 존재한다.</p></div>
+      <div class="body" id="b-mars"><div class="pic"><img src="images/mars.webp" alt="화성"></div><span class="kind">행성 ④</span><h4>화성</h4><p>표면이 <span class="bl">붉게</span> 보이고 과거에 물이 흘렀던 흔적이 있다. 극지방에는 얼음과 드라이아이스로 이루어진 흰색의 <span class="bl">극관</span>이 있다.</p></div>
+      <div class="body" id="b-jupiter"><div class="pic"><img src="images/jupiter.webp" alt="목성"></div><span class="kind">행성 ⑤</span><h4>목성</h4><p>주로 수소와 헬륨으로 이루어져 있다. 표면에는 적도와 나란한 줄무늬와 대기의 소용돌이인 <span class="bl">대적점</span>이 나타난다. 희미한 고리가 있고, 위성이 많다.</p></div>
+      <div class="body" id="b-saturn"><div class="pic"><img src="images/saturn.webp" alt="토성"></div><span class="kind">행성 ⑥</span><h4>토성</h4><p>주로 수소와 헬륨으로 이루어져 있고, 표면에는 적도와 나란한 줄무늬가 나타난다. <span class="bl">뚜렷한</span> 고리가 있고, 위성이 많다.</p></div>
+      <div class="body" id="b-uranus"><div class="pic"><img src="images/uranus.webp" alt="천왕성"></div><span class="kind">행성 ⑦</span><h4>천왕성</h4><p><span class="bl">청록색</span>으로 보이고, <span class="bl">자전축</span>이 공전 궤도면과 거의 나란하다. 희미한 고리와 위성들이 있다.</p></div>
+      <div class="body" id="b-neptune"><div class="pic"><img src="images/neptune.webp" alt="해왕성"></div><span class="kind">행성 ⑧</span><h4>해왕성</h4><p>청록색으로 보이고, 대기의 소용돌이인 <span class="bl">대흑점</span>이 있다. 희미한 고리와 위성들이 있다.</p></div>
+    </div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card concept reveal" data-reveal>
+    <h3>왜소 행성, 소행성, 혜성, 위성</h3>
+    <div class="bodies">
+      <div class="body" id="b-dwarf"><div class="pic"><img src="images/pluto.webp" alt="명왕성" class="round" style="max-height:90px"><img src="images/ceres.webp" alt="세레스" class="round" style="max-height:70px;margin-left:8px"></div><span class="kind">예: 명왕성, 세레스</span><h4>왜소 행성</h4><p>태양 주위를 공전하는 천체 중 모양이 <span class="bl">둥글지만</span> 행성에 비해 질량과 크기가 <span class="bl">작은</span> 천체이다.</p></div>
+      <div class="body" id="b-asteroid"><div class="pic"><img src="images/asteroids.webp" alt="소행성"></div><span class="kind">소천체</span><h4>소행성</h4><p>주로 <span class="bl">화성</span>과 <span class="bl">목성</span>의 공전 궤도 사이에서 태양 주위를 공전하는 천체이다. 모양이 <span class="bl">불규칙</span>하며 크기가 다양하다.</p></div>
+      <div class="body" id="b-comet"><div class="pic"><img src="images/comet.webp" alt="혜성"></div><span class="kind">소천체</span><h4>혜성</h4><p><span class="bl">얼음</span>과 먼지로 이루어져 있으며 대부분 태양 주위를 타원 궤도로 공전한다. 태양에 가까워지면 태양 반대쪽으로 <span class="bl">꼬리</span>가 생긴다.</p></div>
+      <div class="body" id="b-moon"><div class="pic"><img src="images/moon.webp" alt="달" class="round" style="max-height:90px"><img src="images/io.webp" alt="이오" class="round" style="max-height:70px;margin-left:8px"></div><span class="kind">예: 달, 이오</span><h4>위성</h4><p><span class="bl">행성</span> 주위를 공전하는 천체이다. 달은 <span class="bl">지구</span>의 위성이다.</p></div>
+    </div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+</section>
+
+<!-- ================= 명왕성 ================= -->
+<section id="pluto">
+  <div class="sec-head"><div class="num">4</div><h2>명왕성은 왜 행성이 아닐까?<small>도움 영상으로 알아보기</small></h2></div>
+
+  <div class="card think reveal" data-reveal>
+    <h3><span class="tag">생각해 보기</span>행성에서 왜소 행성이 된 명왕성</h3>
+    <div class="grid2 wide-left">
+      <div>
+        <p>명왕성은 1930년에 발견된 뒤 태양계의 아홉 번째 행성으로 불렸다. 그런데 2006년, 국제천문연맹(IAU)은 행성의 조건을 새로 정하면서 명왕성을 <b>왜소 행성</b>으로 분류하였다.</p>
+        <p class="big-q">명왕성은 왜 행성이 되지 못했을까?</p>
+      </div>
+      <img src="images/pluto.webp" alt="명왕성" style="max-width:220px;border-radius:50%;justify-self:center">
+    </div>
+    <div class="linkbtns" style="margin-top:6px">
+      <a class="btn link" id="vidMiraeLink" target="_blank" rel="noopener">▶ 도움 영상 ① 명왕성 (미래엔)</a>
+      <a class="btn link" id="vidYTLink" target="_blank" rel="noopener">▶ 도움 영상 ② 명왕성 (유튜브)</a>
+    </div>
+
+    <h3 style="margin-top:22px;font-size:23px"><span class="tag gas">정리</span>행성이 되기 위한 세 가지 조건</h3>
+    <div class="cond">
+      <div class="side"><span class="n">1</span><span class="bl">태양</span> 주위를 공전한다.<span class="x" style="color:var(--answer)">명왕성 ○</span></div>
+      <div class="side"><span class="n">2</span>질량이 충분히 커서 모양이 <span class="bl">둥글다</span>.<span class="x" style="color:var(--answer)">명왕성 ○</span></div>
+      <div class="side"><span class="n">3</span>자신의 공전 궤도 주변에서 <span class="bl">지배적</span>인 천체이다. <span class="note">(궤도 주변의 다른 천체들을 끌어당기거나 밀어내 정리했다.)</span><span class="x" style="color:#DC2626">명왕성 ✕</span></div>
+    </div>
+    <div class="ans"><p>명왕성은 태양 주위를 공전하고 모양도 둥글지만, 크기와 질량이 작아 자신의 공전 궤도 주변에 있는 비슷한 천체들을 정리하지 못했다. 그래서 행성의 세 번째 조건을 만족하지 못해 왜소 행성으로 분류되었다.</p></div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+</section>
+
+<!-- ================= 관측하기 ================= -->
+<section id="observe">
+  <div class="sec-head"><div class="num">5</div><h2>천체 망원경을 이용하여 달과 행성 관측하기<small>교과서 232~233쪽 · 탐구 (교사 설명 + 가상 관측)</small></h2></div>
+
+  <div class="card lab reveal">
+    <h3><span class="tag mint">탐구</span>목표와 준비</h3>
+    <div class="grid2 wide-left">
+      <div>
+        <p><b>목표</b> | 천체 망원경을 이용하여 달과 행성을 관측할 수 있다.</p>
+        <p><b>준비물</b> | 천체 망원경, 스마트 기기, 천체 관측 애플리케이션</p>
+        <div class="side"><b>안전</b> · 보호자와 함께 하며, 너무 늦은 시간까지 관측하지 않는다. · 밤에는 사물이 잘 보이지 않으므로 조심히 행동한다.</div>
+        <div class="side" style="margin-top:10px"><b>천체 망원경의 구조</b> · <b>경통</b>: 빛을 모으는 긴 통 · <b>파인더</b>: 관측할 천체를 찾는 작은 망원경 · <b>접안렌즈</b>: 눈을 대고 보는 렌즈 (조작 방법은 부록 266쪽)</div>
+      </div>
+      <img src="images/telescope.webp" alt="천체 망원경으로 관측하는 학생" style="max-height:360px;justify-self:center">
+    </div>
+  </div>
+
+  <div class="card lab reveal">
+    <h3><span class="tag mint">탐구 1 · 2</span>관측 과정 알아보기</h3>
+    <div class="grid2" style="align-items:start">
+      <div>
+        <p class="jua" style="font-size:22px;margin:0 0 6px">달 관측하기</p>
+        <ol class="steps">
+          <li>오늘 밤에 달을 관측할 수 있는 시각과 방향을 스마트 기기로 미리 조사한다.</li>
+          <li>주위가 트여 있는 장소에 천체 망원경을 설치한다.</li>
+          <li>파인더 중앙에 달이 오도록 경통 방향을 조절한다.</li>
+          <li>접안렌즈로 달을 관측해 보자. <span class="note">(상현달일 때 관측하면 운석 구덩이를 더 입체적으로 볼 수 있다.)</span></li>
+          <li>접안렌즈에 스마트 기기의 카메라를 가깝게 하여 달을 촬영해 보자.</li>
+        </ol>
+      </div>
+      <div>
+        <p class="jua" style="font-size:22px;margin:0 0 6px">행성 관측하기</p>
+        <ol class="steps">
+          <li>오늘 밤에 관측할 수 있는 행성과 그 시각, 방향을 스마트 기기로 미리 조사한다.</li>
+          <li>주위가 트여 있는 장소에 천체 망원경을 설치한다.</li>
+          <li>천체 관측 애플리케이션을 이용해 관측할 행성의 위치를 찾는다.</li>
+          <li>파인더 중앙에 행성이 오도록 경통 방향을 조절한다.</li>
+          <li>접안렌즈로 행성을 관측하고, 스마트 기기로 촬영해 보자.</li>
+        </ol>
+      </div>
+    </div>
+    <img src="images/telescope_photo.webp" alt="접안렌즈에 스마트 기기를 대고 촬영하는 모습" style="max-width:420px;margin:10px auto 0;border-radius:14px">
+  </div>
+
+  <div class="card reveal" style="border-color:#C3C9F5">
+    <h3><span class="tag gas">가상 관측</span>스텔라리움 웹으로 달과 행성 관측하기</h3>
+    <div class="grid2 wide-left" style="align-items:start">
+      <ol class="steps">
+        <li>아래 버튼을 눌러 스텔라리움 웹(Stellarium Web)을 연다.</li>
+        <li>왼쪽 아래의 <b>위치</b>를 눌러 관측 장소를 우리 지역(부산)으로 맞춘다.</li>
+        <li>오른쪽 아래의 <b>날짜와 시간</b>을 오늘 밤 시각(예: 오후 9시)으로 바꾼다.</li>
+        <li>위쪽 <b>검색 창</b>에 <b>Moon</b>(달), <b>Jupiter</b>(목성), <b>Saturn</b>(토성)을 입력해 천체를 찾는다.</li>
+        <li>마우스 휠(또는 두 손가락)로 <b>확대</b>하여 달 표면, 목성의 줄무늬와 위성, 토성의 고리를 관찰한다.</li>
+      </ol>
+      <img src="images/phone_app.webp" alt="스마트 기기의 천체 관측 애플리케이션" style="max-height:300px;justify-self:center">
+    </div>
+    <div class="linkbtns">
+      <a class="btn sun" href="https://stellarium-web.org/" target="_blank" rel="noopener">스텔라리움 웹 열기</a>
+      <a class="btn link" href="https://vlabon.re.kr" target="_blank" rel="noopener">브이랩온 (목성·토성 관측)</a>
+    </div>
+  </div>
+
+  <div class="card lab reveal" data-reveal>
+    <h3><span class="tag mint">결과 및 정리</span>관측한 내용 정리하기</h3>
+    <div class="scroll-x"><table class="tb">
+      <thead><tr><th>관측 천체</th><th>모습</th><th>특징</th></tr></thead>
+      <tbody>
+        <tr><th>달</th><td><img src="images/moon.webp" alt="달" style="height:70px;border-radius:50%;margin:auto"></td><td style="text-align:left"><span class="ans" style="display:block;margin:0"><span>달 표면의 어두운 부분과 밝은 부분이 보인다. 둥근 운석 구덩이가 많이 보인다.</span></span></td></tr>
+        <tr><th>토성</th><td><img src="images/saturn.webp" alt="토성" style="height:60px;margin:auto"></td><td style="text-align:left"><span class="ans" style="display:block;margin:0"><span>토성의 고리가 보인다.</span></span></td></tr>
+        <tr><th>목성</th><td><img src="images/jupiter.webp" alt="목성" style="height:60px;margin:auto"></td><td style="text-align:left"><span class="ans" style="display:block;margin:0"><span>표면에 적도와 나란한 줄무늬가 보이고, 목성 옆에 밝은 점처럼 보이는 위성들이 보인다.</span></span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+</section>
+
+<!-- ================= 확인·정리 ================= -->
+<section id="wrap">
+  <div class="sec-head"><div class="num">6</div><h2>확인하고 정리하기<small>교과서 233쪽</small></h2></div>
+
+  <div class="card check reveal" data-reveal>
+    <h3><span class="tag sun">스스로 확인하기</span></h3>
+    <ul class="qlist">
+      <li><span class="qn">1</span>태양계 구성 천체는 모두 스스로 빛을 낸다. ( ○, ✕ ) → <span class="bl">✕</span> <span class="note">스스로 빛을 내는 천체는 태양뿐이다.</span></li>
+      <li><span class="qn">2</span>주로 얼음으로 이루어져 있고 태양에 가까워지면 꼬리가 생기는 천체는 <span class="bl">혜성</span>(이)다.</li>
+      <li><span class="qn">3</span><b style="color:#9A7400">의사 결정 능력</b> | 행성과 소행성의 공통점과 차이점을 이야기해 보자.
+        <div class="ans"><p>행성과 소행성은 모두 태양 주위를 공전한다는 공통점이 있다. 차이점은 행성은 둥근 모양이지만, 소행성은 모양이 불규칙하다.</p></div></li>
+    </ul>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card check reveal" data-reveal>
+    <h3><span class="tag sun">추가 확인 문제</span>설명에 알맞은 천체를 골라 보자.</h3>
+    <p class="note" style="margin-top:-6px">보기: 수성, 혜성, 달, 왜소 행성</p>
+    <ul class="qlist">
+      <li><span class="qn">1</span>대기가 거의 없어 낮과 밤의 온도 차가 매우 크고, 표면에 운석 구덩이가 많은 행성 → <span class="bl">수성</span></li>
+      <li><span class="qn">2</span>얼음과 먼지로 이루어져 있으며, 태양에 가까워지면 태양 반대쪽으로 꼬리가 생기는 천체 → <span class="bl">혜성</span></li>
+      <li><span class="qn">3</span>지구 주위를 공전하는 지구의 위성 → <span class="bl">달</span></li>
+      <li><span class="qn">4</span>모양이 둥글지만 행성에 비해 질량과 크기가 작은 천체 (예: 명왕성, 세레스) → <span class="bl" style="min-width:5em">왜소 행성</span></li>
+    </ul>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card check reveal" data-reveal>
+    <h3><span class="tag sun">O / X 확인</span>문장이 옳으면 O, 옳지 않으면 X</h3>
+    <div class="ox"><span class="s">① 태양은 태양계에서 유일하게 스스로 빛을 내는 천체이다.</span><span class="bl">O</span></div>
+    <div class="ox"><span class="s">② 소행성은 주로 화성과 목성의 공전 궤도 사이에서 태양 주위를 공전한다.</span><span class="bl">O</span></div>
+    <div class="ox"><span class="s">③ 태양계의 모든 행성은 위성을 가지고 있다.</span><span class="bl">X</span></div>
+    <div class="ox"><span class="s">④ 명왕성은 모양이 둥글지 않아서 행성이 되지 못했다.</span><span class="bl">X</span></div>
+    <div class="ox"><span class="s">⑤ 화성의 극지방에는 얼음과 드라이아이스로 이루어진 흰색의 극관이 있다.</span><span class="bl">O</span></div>
+    <div class="ox"><span class="s">⑥ 토성은 태양계 행성 중 유일하게 고리가 있다.</span><span class="bl">X</span></div>
+    <p class="note" style="margin:8px 0 0">③ 수성과 금성은 위성이 없다. ④ 명왕성은 둥글지만 궤도 주변을 정리하지 못했다. ⑥ 목성, 천왕성, 해왕성도 희미한 고리가 있다.</p>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card concept reveal" data-reveal>
+    <h3>배운 내용 정리하기 · 태양계 구성 천체</h3>
+    <div class="scroll-x"><table class="tb">
+      <thead><tr><th>천체</th><th>무엇의 주위를 공전할까?</th><th>모양</th><th>예</th></tr></thead>
+      <tbody>
+        <tr><th>태양</th><td>- (태양계의 중심)</td><td>둥글다</td><td>-</td></tr>
+        <tr><th>행성</th><td><span class="bl">태양</span></td><td><span class="bl">둥글다</span></td><td>수성 ~ 해왕성 (8개)</td></tr>
+        <tr><th>왜소 행성</th><td><span class="bl">태양</span></td><td><span class="bl">둥글다</span></td><td>명왕성, 세레스</td></tr>
+        <tr><th>소행성</th><td><span class="bl">태양</span></td><td><span class="bl">불규칙</span></td><td>화성과 목성 궤도 사이</td></tr>
+        <tr><th>혜성</th><td><span class="bl">태양</span> (긴 타원 궤도)</td><td>꼬리가 생김</td><td>-</td></tr>
+        <tr><th>위성</th><td><span class="bl">행성</span></td><td>-</td><td>달, 이오</td></tr>
+      </tbody>
+    </table></div>
+    <div class="rv-bar"><button class="btn rv-btn">정답 확인</button></div>
+  </div>
+
+  <div class="card reveal" style="background:var(--gas-soft);border-color:#C3C9F5">
+    <h3 style="margin:0">다음 시간에는</h3>
+    <p style="margin:6px 0 0">‘2. 태양계 행성 분류’에 대해 알아보자. (교과서 234~235쪽)</p>
+  </div>
+</section>
+
+</main>
+<footer>미래엔 중학교 과학 1 · Ⅶ. 태양계 · 1. 태양계 구성 천체와 태양의 활동 · 1. 태양계 구성 천체 (228~233쪽)</footer>
+
+<script>
+/* ===== 영상 주소: 바꾸고 싶으면 이 두 줄만 수정 ===== */
+const VIDEO_MIRAE = 'https://q.mirae-n.com/h6lRL';
+const VIDEO_YOUTUBE = 'https://youtube.com/shorts/wykvitl-rPo?si=Q-j2QYEVY_Ol6ae4';
+document.getElementById('vidMiraeLink').href=VIDEO_MIRAE;
+document.getElementById('vidYTLink').href=VIDEO_YOUTUBE;
+
+/* ---------- 정답 확인: 버튼 한 번에 빈칸 하나씩 ---------- */
+document.querySelectorAll('[data-reveal]').forEach(box=>{
+  const items=[...box.querySelectorAll('.bl, .ans, .mk')];
+  const btn=box.querySelector('.rv-btn');
+  if(!btn||!items.length) return;
+  const shown=()=>items.filter(x=>x.classList.contains('on')).length;
+  const upd=()=>{
+    const n=shown();
+    if(n<items.length){btn.innerHTML='정답 확인<span class="cnt">'+n+' / '+items.length+'</span>';btn.classList.remove('ghost');}
+    else{btn.textContent='다시 가리기';btn.classList.add('ghost');}
+  };
+  btn.addEventListener('click',()=>{
+    const next=items.find(x=>!x.classList.contains('on'));
+    if(next)next.classList.add('on');
+    else items.forEach(x=>x.classList.remove('on'));
+    upd();
+  });
+  items.forEach(el=>el.addEventListener('click',()=>{el.classList.add('on');upd();}));
+  upd();
+});
+
+
+/* ---------- 스크롤 페이드 & 내비 강조 ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const links=[...document.querySelectorAll('nav a')];
+const secIo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('main section').forEach(s=>secIo.observe(s));
+
+/* ---------- 모둠 역할 ---------- */
+(function(){
+  const R4=[
+    {who:'1번',what:['행성'],tip:['8개 행성의 특징','고리·위성 여부']},
+    {who:'2번',what:['태양','위성'],tip:['태양의 특징','위성의 특징과 예']},
+    {who:'3번',what:['왜소 행성','소행성'],tip:['둘의 공통점과 차이점','각각의 예']},
+    {who:'4번',what:['혜성'],tip:['혜성의 특징과 예','모둠 발표 자료 정리']}
+  ];
+  const R3=[
+    {who:'1번',what:['행성','위성'],tip:['8개 행성의 특징','위성의 특징과 예']},
+    {who:'2번',what:['태양','혜성'],tip:['태양의 특징','혜성의 특징과 예']},
+    {who:'3번',what:['왜소 행성','소행성'],tip:['둘의 공통점과 차이점','각각의 예']}
+  ];
+  const box=document.getElementById('roles'),note=document.getElementById('roleNote'),b4=document.getElementById('m4'),b3=document.getElementById('m3');
+  function show(n){
+    const R=n===4?R4:R3;box.className='roles'+(n===3?' three':'');
+    box.innerHTML=R.map(r=>`<div class="role"><div class="who">${r.who} 모둠원</div><div class="what">${r.what.join(' · ')}<span class="cnt">${r.what.length}개</span></div><ul>${r.tip.map(t=>'<li>'+t+'</li>').join('')}</ul></div>`).join('');
+    note.textContent=n===4?'4명 모둠: 천체가 6가지이므로 2번, 3번 모둠원은 2가지씩 조사한다. (행성은 8개라 1번이 전담)':'3명 모둠: 모든 모둠원이 2가지씩 조사한다.';
+    b4.classList.toggle('off',n!==4);b3.classList.toggle('off',n!==3);
+  }
+  b4.onclick=()=>show(4);b3.onclick=()=>show(3);show(4);
+})();
+
+/* ---------- 타이머 ---------- */
+(function(){
+  const t=document.getElementById('tm'),st=document.getElementById('tStart'),rs=document.getElementById('tReset');
+  let total=600,left=600,timer=null,endAt=0;
+  const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+  const draw=()=>{t.textContent=fmt(Math.max(0,left));t.classList.toggle('end',left<=0);};
+  function stop(){clearInterval(timer);timer=null;st.textContent='시작';}
+  st.onclick=()=>{
+    if(timer){stop();return;}
+    if(left<=0)left=total;
+    endAt=Date.now()+left*1000;st.textContent='일시 정지';
+    timer=setInterval(()=>{left=Math.round((endAt-Date.now())/1000);draw();if(left<=0){stop();t.textContent='끝!';}},250);
+  };
+  rs.onclick=()=>{stop();left=total;draw();};
+  document.querySelectorAll('[data-min]').forEach(b=>b.onclick=()=>{stop();total=left=+b.dataset.min*60;draw();});
+  draw();
+})();
+
+/* ---------- 천체 띠 ---------- */
+(function(){
+  const list=[['sun','태양'],['mercury','수성'],['venus','금성'],['earth','지구'],['mars','화성'],['asteroids','소행성'],['jupiter','목성'],['saturn','토성'],['uranus','천왕성'],['neptune','해왕성'],['pluto','왜소 행성','dwarf'],['comet','혜성'],['moon','위성']];
+  const strip=document.getElementById('strip');
+  list.forEach(([img,name,id])=>{
+    const b=document.createElement('button');
+    const round=['earth','mars','pluto','moon'].includes(img)?'border-radius:50%;':'';
+    b.innerHTML=`<img src="images/${img}.webp" alt="" style="${round}${img==='sun'?'height:80px;border-radius:50%;width:80px;object-fit:cover;':''}">${name}`;
+    b.onclick=()=>{const card=document.getElementById('b-'+(id||(img==='asteroids'?'asteroid':img)));if(!card)return;card.scrollIntoView({behavior:'smooth',block:'center'});card.classList.add('hl');setTimeout(()=>card.classList.remove('hl'),2200);};
+    strip.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>
